@@ -7,6 +7,7 @@ class Triangle{
         Triangle(std::vector<Vector3d>);
         Triangle(const Triangle&);
         Triangle(Triangle&&);
+        void operator=(const Triangle&);
         Vector3d& operator[](int i){
             if(i>2){
                 return points[0];

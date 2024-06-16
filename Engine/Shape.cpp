@@ -1,5 +1,6 @@
 #include "Shape.h"
 
+Shape::Shape(){}
 
 Shape::Shape(std::vector<Triangle>&& other):faces{other}, rotateOrigin{0,0,0}{
 

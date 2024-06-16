@@ -12,7 +12,11 @@ SOURCE_FOLDER = ./Engine
 
 OUTPUT_FOLDER = ./output
 
-OBJS = Shape.o Triange.o Vector3d.o Matrix.o Engine.o main.o
+EXCEPTION_FOLDER = ./Exceptions
+
+GAME_FOLDER = ./Game
+
+OBJS = Game.o Interface.o Shape.o Triange.o Vector3d.o Matrix.o Engine.o main.o
 
 OBJS_WITH_FOLDER = $(OBJS_FOLDER)/Shape.o $(OBJS_FOLDER)/Triange.o $(OBJS_FOLDER)/Vector3d.o $(OBJS_FOLDER)/Matrix.o $(OBJS_FOLDER)/Engine.o $(OBJS_FOLDER)/main.o
 
@@ -43,6 +47,13 @@ Engine.o: $(SOURCE_FOLDER)/Engine.cpp $(SOURCE_FOLDER)/Engine.h
 	$(CXX) -c $(SOURCE_FOLDER)/Engine.cpp -o $(OBJS_FOLDER)/Engine.o
 
 main.o: main.cpp 
-	$(CXX) -c main.cpp -o $(OBJS_FOLDER)/main.o $(COMPILE_DEPENDENCIES)
+	$(CXX) -c main.cpp -o $(OBJS_FOLDER)/main.o 
+
+Game.o: $(GAME_FOLDER)/Game.cpp $(GAME_FOLDER)/Game.h $(EXCEPTION_FOLDER)/GameException.h
+	$(CXX) -c $(GAME_FOLDER)/Game.cpp -o $(OBJS_FOLDER)/Game.o
+
+Interface.o: $(GAME_FOLDER)/Interface.cpp $(GAME_FOLDER)/Interface.h
+	$(CXX) -c $(GAME_FOLDER)/Interface.cpp -o $(OBJS_FOLDER)/Interface.o $(COMPILE_DEPENDENCIES)
+
 clean:
 	del .\objects\*.o

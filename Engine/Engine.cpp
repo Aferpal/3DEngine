@@ -8,7 +8,7 @@ Engine::Engine(float angle, float zEnd, float zStart):viewAngle{angle}{
     normalizer.m.emplace_back(std::vector<float>{0, 0, zStart*zEnd/(zEnd-zStart), 0});
 }
 
-Shape Engine::display(Shape& shape){
+Shape Engine::normalizeShape(Shape& shape){
     Shape normalizedShape{{}};
     for(Triangle& triangle:shape.faces){
         std::vector<Vector3d>tri;

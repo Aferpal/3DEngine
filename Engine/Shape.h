@@ -9,6 +9,7 @@ class Shape{
     public:
     
         std::vector<Triangle> faces;
+        Shape();
         Shape(std::vector<Triangle>&);
         Shape(std::vector<Triangle>&&);
         void rotate(float, float, float);
