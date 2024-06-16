@@ -34,8 +34,8 @@ void Interface::startGame(){
 
 void Interface::drawGame(){
     for(Shape& s : this->game.figures){
-        s.rotate(0.01, 0, 0);
-        drawShape(s);
+        s.rotate(0.01, 0.005, 0.002);
+        drawShape(this->game.engine.normalizeShape(s));
     }
 }
 

@@ -31,6 +31,7 @@ void Game::processLine(const std::string& line){
         v.z = std::stof(vertexData);
         triangleValues.emplace_back(v);
     }
+    
     Triangle tr (triangleValues);
     this->figures.back().faces.emplace_back(tr);
 }
