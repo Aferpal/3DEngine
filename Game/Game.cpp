@@ -26,7 +26,7 @@ void Game::processLine(const std::string& line){
         std::getline(stringStreamForVertexData, vertexData, ',');
         v.x= std::stof(vertexData);
         std::getline(stringStreamForVertexData, vertexData, ',');
-        v.y = std::stof(vertexData);
+        v.y = -std::stof(vertexData);
         std::getline(stringStreamForVertexData, vertexData, ',');
         v.z = std::stof(vertexData);
         triangleValues.emplace_back(v);
