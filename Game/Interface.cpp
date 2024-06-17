@@ -16,15 +16,6 @@ void Interface::startGame(){
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                 window.close();
             }
-            /*if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-                angleX=0; angleY=0; angleZ=0;
-            }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
-                angleX=0.01; angleY=0.005; angleZ=0.02;
-            }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
-                angleX=-0.01; angleY=-0.005; angleZ=-0.02;
-            }*/
         }
         window.clear();
         drawGame();

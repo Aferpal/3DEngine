@@ -6,7 +6,7 @@
 #include<sstream>
 class Game {
     private:
-        void processLine(const std::string& line);
+        void processLine(std::string* line);
     public:
         std::vector<Shape> figures;
         Engine engine {90, 10, 1};
