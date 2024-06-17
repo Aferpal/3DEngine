@@ -1,5 +1,13 @@
 #include "Game.h"
 
+Game::Game():rightLimit{5}, leftLimit{-5}, frontLimit{1}, backLimit{20}{
+
+}
+
+Game::Game(int sidesLimit, int fl, int bl):rightLimit{sidesLimit}, leftLimit{-sidesLimit}, frontLimit{fl}, backLimit{bl}{
+
+}
+
 void Game::readShapeFromFilePath(const std::string& path){
     std::ifstream in_file {path};
     if(!in_file){
@@ -34,4 +42,27 @@ void Game::processLine(std::string* line){
     
     Triangle tr (triangleValues);
     this->figures.back().faces.emplace_back(tr);
+}
+
+std::vector<Shape>* Game::getFigures() const{
+    return (std::vector<Shape>*)&figures;
+};
+
+Shape Game::getNormalizedShape(const Shape& s){
+    return this->engine.normalizeShape(s);
+};
+
+bool Game::isShapeInLimits(const Shape& s){
+    for(const Triangle& t: s.faces){
+        for(const Vector3d& v : t.points){
+           if(!isPointInLimits(v)){
+            return false;
+           }
+        }
+    }
+    return true;
+}
+
+bool Game::isPointInLimits(const Vector3d& v){
+    return !(v.x>rightLimit || v.x<leftLimit || v.z>backLimit || v.z<frontLimit);
 }

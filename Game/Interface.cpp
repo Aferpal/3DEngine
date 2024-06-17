@@ -24,10 +24,12 @@ void Interface::startGame(){
 }
 
 void Interface::drawGame(){
-    for(Shape& s : this->game.figures){
+    for(Shape& s : *(this->game.getFigures())){
         s.setRotateOrigin({0.5, 0.5, 3.5});
         s.rotate(0.0, 0.005, 0.0);
-        drawShape(this->game.engine.normalizeShape(s));
+        if(shouldDrawShape(s)){
+            drawShape(this->game.getNormalizedShape(s));
+        }
     }
 }
 
@@ -57,4 +59,8 @@ void Interface::drawTriangle(Triangle& tri){
     this->window.draw(line, 2, sf::Lines);
     this->window.draw(line2, 2, sf::Lines);
     this->window.draw(line3, 2, sf::Lines);
+}
+
+bool Interface::shouldDrawShape(const Shape& s){
+    return this->game.isShapeInLimits(s);
 }

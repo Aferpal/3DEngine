@@ -7,5 +7,5 @@ class Engine{
         Matrix normalizer;
     public:
         Engine(float, float, float);
-        Shape normalizeShape(Shape&);
+        Shape normalizeShape(const Shape&);
 };

@@ -11,4 +11,5 @@ class Interface{
         void drawGame();
         void drawShape(const Shape& s);
         void drawTriangle(Triangle& tri);
+        bool shouldDrawShape(const Shape& s);
 };
