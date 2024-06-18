@@ -25,8 +25,8 @@ void Interface::startGame(){
 
 void Interface::drawGame(){
     for(Shape& s : *(this->game.getFigures())){
-        s.setRotateOrigin({0.5, 0.5, 3.5});
-        s.rotate(0.0, 0.005, 0.0);
+        s.setRotateOrigin({0, 0, 0});
+        s.rotate(0.0, 0.0, 0.05);
         if(shouldDrawShape(s)){
             drawShape(this->game.getNormalizedShape(s));
         }

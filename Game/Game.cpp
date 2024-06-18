@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game():rightLimit{5}, leftLimit{-5}, frontLimit{1}, backLimit{20}{
+Game::Game():rightLimit{15}, leftLimit{-15}, frontLimit{1}, backLimit{20}{
 
 }
 
