@@ -1,1 +1,2 @@
-/output
+/output/*.exe
+/objects/*.o
