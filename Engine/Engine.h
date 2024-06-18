@@ -8,4 +8,5 @@ class Engine{
     public:
         Engine(float, float, float);
         Shape normalizeShape(const Shape&);
+        float getViewAngle() const;
 };

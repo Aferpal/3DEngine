@@ -29,3 +29,6 @@ Shape Engine::normalizeShape(const Shape& shape){
     }
     return normalizedShape;
 }
+float Engine::getViewAngle() const {
+    return this->viewAngle;
+}

@@ -55,14 +55,22 @@ Shape Game::getNormalizedShape(const Shape& s){
 bool Game::isShapeInLimits(const Shape& s){
     for(const Triangle& t: s.faces){
         for(const Vector3d& v : t.points){
-           if(!isPointInLimits(v)){
-            return false;
+           if(isPointInLimits(v)){
+            return true;
            }
         }
     }
-    return true;
+    return false;
 }
 
 bool Game::isPointInLimits(const Vector3d& v){
-    return !(v.x>rightLimit || v.x<leftLimit || v.z>backLimit || v.z<frontLimit);
+    float tanValue = tanf(this->engine.getViewAngle()/2);
+    return (
+                v.z<=backLimit 
+                && v.z>=frontLimit
+                && (v.x/v.z)>=-(tanValue)
+                && (v.x/v.z)<=tanValue
+                && (v.y/v.z)>=-tanValue
+                && (v.y/v.z)<=tanValue
+            );
 }
