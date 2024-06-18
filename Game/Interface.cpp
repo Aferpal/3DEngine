@@ -26,7 +26,7 @@ void Interface::startGame(){
 void Interface::drawGame(){
     for(Shape& s : *(this->game.getFigures())){
         s.setRotateOrigin({0, 0, 0});
-        s.rotate(0.0, 0.0, 0.05);
+        s.rotate(0.0, 0.0, 0.03);
         if(shouldDrawShape(s)){
             drawShape(this->game.getNormalizedShape(s));
         }
@@ -40,25 +40,17 @@ void Interface::drawShape(const Shape& s){
 }
 
 void Interface::drawTriangle(Triangle& tri){
-    sf::Vertex line[] =
+    float resolutionX = this->window.getSize().x/2;
+    float resolutionY = this->window.getSize().y/2;
+    float resolution = resolutionX>resolutionY?resolutionY:resolutionX;
+    for(int i = 0; i<3; i++){
+        sf::Vertex line[] =
         {
-            sf::Vertex(sf::Vector2f(tri[0].x, tri[0].y)),
-            sf::Vertex(sf::Vector2f(tri[1].x, tri[1].y))
+            sf::Vertex(sf::Vector2f(tri[i].x*resolution, tri[i].y*resolution)),
+            sf::Vertex(sf::Vector2f(tri[(i+1)%3].x*resolution, tri[(i+1)%3].y*resolution))
         };
-    sf::Vertex line2[] =
-        {
-            sf::Vertex(sf::Vector2f(tri[1].x, tri[1].y)),
-            sf::Vertex(sf::Vector2f(tri[2].x, tri[2].y))
-        };
-    sf::Vertex line3[] =
-        {
-            sf::Vertex(sf::Vector2f(tri[2].x, tri[2].y)),
-            sf::Vertex(sf::Vector2f(tri[0].x, tri[0].y))
-        };
-
-    this->window.draw(line, 2, sf::Lines);
-    this->window.draw(line2, 2, sf::Lines);
-    this->window.draw(line3, 2, sf::Lines);
+        this->window.draw(line, 2, sf::Lines);
+    }
 }
 
 bool Interface::shouldDrawShape(const Shape& s){

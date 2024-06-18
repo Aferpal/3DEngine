@@ -21,9 +21,8 @@ Shape Engine::normalizeShape(const Shape& shape){
                 tri[i].y/=triangle.points[i].z;
                 
             }
-            tri[i].x=(tri[i].x+1.0f)*500;
-            tri[i].y=(tri[i].y+1.0f)*500;
-            
+            tri[i].x=(tri[i].x+1.0f);
+            tri[i].y=(tri[i].y+1.0f);  
         }
         normalizedShape.faces.emplace_back(tri);
     }
