@@ -46,8 +46,8 @@ void Interface::drawTriangle(Triangle& tri){
     for(int i = 0; i<3; i++){
         sf::Vertex line[] =
         {
-            sf::Vertex(sf::Vector2f(tri[i].x*resolution, tri[i].y*resolution)),
-            sf::Vertex(sf::Vector2f(tri[(i+1)%3].x*resolution, tri[(i+1)%3].y*resolution))
+            sf::Vertex(sf::Vector2f(tri[i].x*resolution*(resolutionY/resolutionX), tri[i].y*resolution)),
+            sf::Vertex(sf::Vector2f(tri[(i+1)%3].x*resolution*(resolutionY/resolutionX), tri[(i+1)%3].y*resolution))
         };
         this->window.draw(line, 2, sf::Lines);
     }

@@ -28,8 +28,6 @@ COMPILE_DEPENDENCIES = -I"C:\projects\sfml\SFML-2.6.0\include"
 
 $(TARGET): $(OBJS_WITH_FOLDER)
 	$(CXX) $(CXXFLAGS) $(OBJS_WITH_FOLDER) -o $(OUTPUT_FOLDER)/$(TARGET) $(LINK_DEPENDENCIES)
-link: 
-	$(CXX) $(OBJS) -o ./output/app $(LINK_DEPENDENCIES)
 
 $(OBJS_FOLDER)/Shape.o: $(SOURCE_FOLDER)/Shape.cpp $(SOURCE_FOLDER)/Shape.h
 	$(CXX) -c $(SOURCE_FOLDER)/Shape.cpp -o $(OBJS_FOLDER)/Shape.o
