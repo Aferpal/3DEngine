@@ -5,6 +5,7 @@ class Interface{
     private:
         Game game;
         sf::RenderWindow window;
+        void scaleTriangle(Triangle& v);
     public:
         Interface(const Game& g, int, int);
         void startGame();
@@ -12,4 +13,5 @@ class Interface{
         void drawShape(const Shape& s);
         void drawTriangle(Triangle& tri);
         bool shouldDrawShape(const Shape& s);
+        
 };

@@ -35,20 +35,28 @@ void Interface::drawGame(){
 
 void Interface::drawShape(const Shape& s){
     for(auto tri:s.faces){
+        scaleTriangle(tri);
         drawTriangle(tri);
     }
 }
 
-void Interface::drawTriangle(Triangle& tri){
+void Interface::scaleTriangle(Triangle& tri){
     float resolutionX = this->window.getSize().x/2;
     float resolutionY = this->window.getSize().y/2;
-    float xFactor = resolutionX>resolutionY? (resolutionY/resolutionX) : 1;
-    float yFactor = resolutionX>resolutionY ? 1 : (resolutionX/resolutionY);
+    float xFactor = resolutionX>=resolutionY ? (resolutionY/resolutionX) : 1;
+    float yFactor = resolutionX>=resolutionY ? 1 : (resolutionX/resolutionY);
+    for(Vector3d& v : tri.points){
+        v.x = ((v.x * xFactor) + 1 ) * resolutionX;
+        v.y = ((v.y * yFactor) + 1 ) * resolutionY;
+    }
+}
+
+void Interface::drawTriangle(Triangle& tri){
     for(int i = 0; i<3; i++){
         sf::Vertex line[] =
         {
-            sf::Vertex(sf::Vector2f(( ( tri[i].x * xFactor ) + 1 ) * resolutionX , ( ( tri[i].y * yFactor ) + 1 ) * resolutionY )),
-            sf::Vertex(sf::Vector2f(( ( tri[(i+1)%3].x * xFactor ) + 1 ) * resolutionX, ( ( tri[(i+1)%3].y * yFactor ) + 1 ) * resolutionY ))
+            sf::Vertex(sf::Vector2f(tri[i].x, tri[i].y)),
+            sf::Vertex(sf::Vector2f(tri[(i+1)%3].x, tri[(i+1)%3].y))
         };
         this->window.draw(line, 2, sf::Lines);
     }
