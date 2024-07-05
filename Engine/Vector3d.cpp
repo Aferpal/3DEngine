@@ -11,27 +11,21 @@ void Vector3d::add(float a, float b, float c){
     x+=a; y+=b; z+=c;
 }
 
-Vector3d Vector3d::operator*(const Matrix& matrix) const{
-    std::vector<float> mult={x, y, z, q};
-    std::vector<float> res;
-    if (4 != matrix.size()) {
-        Vector3d error = Vector3d{};
-        return error;
+Vector3d& Vector3d::operator*=(const Matrix& matrix){
+    if (matrix.size() != 4 || matrix[0].size()!=4) {
+        return *this;
     }
-    for (size_t j = 0; j < matrix[0].size(); j++) {
-        res.emplace_back(0);
-        for (size_t k = 0; k < 4; k++) {
-            res[j]+=( mult[k] * matrix[k][j] );
-        }
-    }
-    Vector3d r={res[0], res[1], res[2], res[3]};
-    return r;
+    x = x*matrix[0][0] + y*matrix[1][0] + z*matrix[2][0] + q*matrix[3][0];
+    y = x*matrix[0][1]+ y*matrix[1][1] + z*matrix[2][1] + q*matrix[3][1];
+    z = x*matrix[0][2] + y*matrix[1][2] + z*matrix[2][2] + q*matrix[3][2];
+    q = x*matrix[0][3] + y*matrix[1][3] + z*matrix[2][3] + q*matrix[3][3];
+    return *this;
 }
-void Vector3d::operator=(const Vector3d &other){
+Vector3d& Vector3d::operator=(const Vector3d &other){
     x= other.x; y=other.y; z=other.z; q=other.q;
-
+    return *this;
 };
 
-bool Vector3d::validate(std::vector<float> vec){
+bool Vector3d::validate(const std::vector<float>& vec){
     return vec.size()==3;
 }

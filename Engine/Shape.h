@@ -7,10 +7,9 @@ class Shape{
     Matrix getRotationMatrixY(float);
     Matrix getRotationMatrixZ(float);
     public:
-    
         std::vector<Triangle> faces;
         Shape();
-        Shape(std::vector<Triangle>&);
+        Shape(const std::vector<Triangle>&);
         Shape(std::vector<Triangle>&&);
         void rotate(float, float, float);
         void rotateX(float);

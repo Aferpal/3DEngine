@@ -6,7 +6,7 @@ Shape::Shape(std::vector<Triangle>&& other):faces{other}, rotateOrigin{0,0,0}{
 
 }
 
-Shape::Shape(std::vector<Triangle>& other):faces{other}, rotateOrigin{0,0,0}{
+Shape::Shape(const std::vector<Triangle>& other):faces{other}, rotateOrigin{0,0,0}{
 
 }
 void Shape::setRotateOrigin(const Vector3d& vec){rotateOrigin=vec;};
@@ -17,9 +17,9 @@ void Shape::rotate(float angleX, float angleY, float angleZ){
     for(auto& face : faces){
         for(auto& vector : face.points){
             vector.add(-rotateOrigin.x, -rotateOrigin.y, -rotateOrigin.z);
-            vector = vector*getRotationMatrixX(angleX);
-            vector = vector*getRotationMatrixY(angleY);
-            vector = vector*getRotationMatrixZ(angleZ);
+            vector*=getRotationMatrixX(angleX);
+            vector*=getRotationMatrixY(angleY);
+            vector*=getRotationMatrixZ(angleZ);
             vector.add(rotateOrigin.x, rotateOrigin.y, rotateOrigin.z);
         }
     }
@@ -28,7 +28,7 @@ void Shape::rotateX(float angle){
     for(auto&tri : faces){
         for(auto& vec:tri.points){
             vec.add(-rotateOrigin.x, -rotateOrigin.y, -rotateOrigin.z);
-            vec=vec*getRotationMatrixX(angle);
+            vec*=getRotationMatrixX(angle);
             vec.add(rotateOrigin.x, rotateOrigin.y, rotateOrigin.z);
         }
     }
@@ -37,7 +37,7 @@ void Shape::rotateY(float angle){
     for(auto&tri:faces){
         for(auto& vec:tri.points){
             vec.add(-rotateOrigin.x, -rotateOrigin.y, -rotateOrigin.z);
-            vec=vec*getRotationMatrixY(angle);
+            vec*=getRotationMatrixY(angle);
             vec.add(rotateOrigin.x, rotateOrigin.y, rotateOrigin.z);
         }
     }
@@ -46,7 +46,7 @@ void Shape::rotateZ(float angle){
     for(auto&tri:faces){
         for(auto& vec:tri.points){
             vec.add(-rotateOrigin.x, -rotateOrigin.y, -rotateOrigin.z);
-            vec=vec*getRotationMatrixZ(angle);
+            vec*=getRotationMatrixZ(angle);
             vec.add(rotateOrigin.x, rotateOrigin.y, rotateOrigin.z);
         }
     }

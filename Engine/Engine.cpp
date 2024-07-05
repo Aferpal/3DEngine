@@ -9,25 +9,18 @@ Engine::Engine(float angle, float zEnd, float zStart):viewAngle{angle}{
 }
 
 Shape Engine::normalizeShape(const Shape& shape){
-    Shape normalizedShape{{}};
-    for(const Triangle& triangle:shape.faces){
-        std::vector<Vector3d>tri;
-        
-        for(size_t i=0; i<3; i++){
-            tri.emplace_back();
-            tri[i]=triangle.points[i]*normalizer;
-            if(triangle.points[i].z!=0){
-                tri[i].x/=triangle.points[i].z;
-                tri[i].y/=triangle.points[i].z;
-                
+    Shape normalizedShape{shape.faces};
+    for(Triangle& triangle:normalizedShape.faces){
+        for(Vector3d& v: triangle.points){
+            v*=normalizer;
+            if(v.q!=0){
+                v.x/=v.q; v.y/=v.q;
             }
-            tri[i].x=(tri[i].x+1.0f);
-            tri[i].y=(tri[i].y+1.0f);  
         }
-        normalizedShape.faces.emplace_back(tri);
     }
     return normalizedShape;
 }
+
 float Engine::getViewAngle() const {
     return this->viewAngle;
 }
