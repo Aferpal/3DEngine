@@ -24,12 +24,10 @@ void Interface::startGame(){
 }
 
 void Interface::drawGame(){
-    for(Shape& s : *(this->game.getFigures())){
-        s.setRotateOrigin({0, 0, 0});
-        s.rotate(0.0, 0.0, 0.03);
-        if(shouldDrawShape(s)){
-            drawShape(this->game.getNormalizedShape(s));
-        }
+    std::vector<Shape> normalizedShapes;
+    this->game.fillShapeVectorWithInScreenShapesNormalized(normalizedShapes);
+    for(const Shape& s :normalizedShapes){
+        drawShape(s);
     }
 }
 
@@ -60,8 +58,4 @@ void Interface::drawTriangle(Triangle& tri){
         };
         this->window.draw(line, 2, sf::Lines);
     }
-}
-
-bool Interface::shouldDrawShape(const Shape& s){
-    return this->game.isShapeInLimits(s);
 }

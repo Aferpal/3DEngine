@@ -1,12 +1,10 @@
 #include "Game.h"
 
-Game::Game():rightLimit{15}, leftLimit{-15}, frontLimit{1}, backLimit{20}{
+Game::Game()
+    :Game(1, 20, 90){}
 
-}
-
-Game::Game(int sidesLimit, int fl, int bl):rightLimit{sidesLimit}, leftLimit{-sidesLimit}, frontLimit{fl}, backLimit{bl}{
-
-}
+Game::Game(float frontLimit, float backLimit, float cameraViewAngle)
+    :frontLimit{frontLimit}, backLimit{backLimit}, engine{cameraViewAngle, frontLimit, backLimit}{}
 
 void Game::readShapeFromFilePath(const std::string& path){
     std::ifstream in_file {path};
@@ -48,29 +46,6 @@ std::vector<Shape>* Game::getFigures() const{
     return (std::vector<Shape>*)&figures;
 };
 
-Shape Game::getNormalizedShape(const Shape& s){
-    return this->engine.normalizeShape(s);
+void Game::fillShapeVectorWithInScreenShapesNormalized(std::vector<Shape>& v){
+    this->engine.getShapesNormalizedAndInCamera(this->figures, v);
 };
-
-bool Game::isShapeInLimits(const Shape& s){
-    for(const Triangle& t: s.faces){
-        for(const Vector3d& v : t.points){
-           if(isPointInLimits(v)){
-            return true;
-           }
-        }
-    }
-    return false;
-}
-
-bool Game::isPointInLimits(const Vector3d& v){
-    float tanValue = tanf(this->engine.getViewAngle()/2);
-    return (
-                v.z<=backLimit 
-                && v.z>=frontLimit
-                && (v.x/v.z)>=-(tanValue)
-                && (v.x/v.z)<=tanValue
-                && (v.y/v.z)>=-tanValue
-                && (v.y/v.z)<=tanValue
-            );
-}

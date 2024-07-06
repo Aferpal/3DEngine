@@ -16,9 +16,9 @@ EXCEPTION_FOLDER = ./Exceptions
 
 GAME_FOLDER = ./Game
 
-OBJS = Game.o Interface.o Shape.o Triange.o Vector3d.o Matrix.o Engine.o main.o
+OBJS = Game.o Interface.o Shape.o Triange.o Vector3d.o Matrix.o Engine.o main.o Camera.o
 
-OBJS_WITH_FOLDER = $(OBJS_FOLDER)/Game.o $(OBJS_FOLDER)/Interface.o $(OBJS_FOLDER)/Shape.o $(OBJS_FOLDER)/Triange.o $(OBJS_FOLDER)/Vector3d.o $(OBJS_FOLDER)/Matrix.o $(OBJS_FOLDER)/Engine.o $(OBJS_FOLDER)/main.o
+OBJS_WITH_FOLDER = $(OBJS_FOLDER)/Camera.o $(OBJS_FOLDER)/Game.o $(OBJS_FOLDER)/Interface.o $(OBJS_FOLDER)/Shape.o $(OBJS_FOLDER)/Triange.o $(OBJS_FOLDER)/Vector3d.o $(OBJS_FOLDER)/Matrix.o $(OBJS_FOLDER)/Engine.o $(OBJS_FOLDER)/main.o 
 
 LINK_DEPENDENCIES = -L"C:\projects\sfml\SFML-2.6.0\lib" -lsfml-graphics -lsfml-window -lsfml-system
 
@@ -52,6 +52,9 @@ $(OBJS_FOLDER)/Game.o: $(GAME_FOLDER)/Game.cpp $(GAME_FOLDER)/Game.h $(EXCEPTION
 
 $(OBJS_FOLDER)/Interface.o: $(GAME_FOLDER)/Interface.cpp $(GAME_FOLDER)/Interface.h
 	$(CXX) -c $(GAME_FOLDER)/Interface.cpp -o $(OBJS_FOLDER)/Interface.o $(COMPILE_DEPENDENCIES)
+
+$(OBJS_FOLDER)/Camera.o: $(SOURCE_FOLDER)/Camera.cpp $(SOURCE_FOLDER)/Camera.h
+	$(CXX) -c $(SOURCE_FOLDER)/Camera.cpp -o $(OBJS_FOLDER)/Camera.o
 
 clean:
 	del .\objects\*.o

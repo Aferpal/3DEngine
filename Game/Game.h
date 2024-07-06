@@ -7,18 +7,14 @@
 class Game {
     private:
         void processLine(std::string* line);
-        int backLimit;
-        int leftLimit;
-        int rightLimit;
-        int frontLimit;
+        float backLimit;
+        float frontLimit;
         std::vector<Shape> figures;
+        Engine engine;
     public:
         Game();
-        Game(int, int, int);
+        Game(float, float, float);
         std::vector<Shape>* getFigures() const;
-        Engine engine {90, 10, 1};
         void readShapeFromFilePath(const std::string& filePath);
-        Shape getNormalizedShape(const Shape& s);
-        bool isShapeInLimits(const Shape& s);
-        bool isPointInLimits(const Vector3d& v);
+        void fillShapeVectorWithInScreenShapesNormalized(std::vector<Shape>& v);
 };
