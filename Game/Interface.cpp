@@ -6,7 +6,7 @@ Interface::Interface(const Game& g, int size_x, int size_y): window{sf::VideoMod
     startGame();
 }
 void Interface::startGame(){
-
+    int opcode = 0;
      while (window.isOpen()){
         sf::Event event;
         while (window.pollEvent(event))
@@ -15,11 +15,17 @@ void Interface::startGame(){
                 window.close();
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                 window.close();
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+                opcode = 0;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+                opcode = 1;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+                opcode = 2;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+                opcode = 3;
             }
         }
-        window.clear();
-        drawGame();
-        window.display();
+        updateGame(opcode);
     }    
 }
 
@@ -58,4 +64,12 @@ void Interface::drawTriangle(Triangle& tri){
         };
         this->window.draw(line, 2, sf::Lines);
     }
+}
+
+
+void Interface::updateGame(int actionCode){
+    this->game.update(actionCode);
+    window.clear();
+    drawGame();
+    window.display();
 }

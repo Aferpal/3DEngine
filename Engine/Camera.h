@@ -15,4 +15,7 @@ class Camera{
         bool isShapeOnCamera(const Shape&);
         bool isTriangleOnCamera(const Triangle&);
         bool isVertexOnCamera(const Vector3d&);
+        const Vector3d& getPosition();
+        void moveTo(const Vector3d& v);
+        void addToPosition(const Vector3d& v);
 };

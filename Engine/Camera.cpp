@@ -30,5 +30,23 @@ bool Camera::isTriangleOnCamera(const Triangle& t){
 }
 
 bool Camera::isVertexOnCamera(const Vector3d& v){
-    return (abs(v.x)<angleTangent &&  abs(v.y)<angleTangent) && v.z>zStart && v.z<zEnd;
+    Vector3d relativePositionOfVectorAndCamera = this->position;
+    relativePositionOfVectorAndCamera*=-1;
+    relativePositionOfVectorAndCamera.add(v);
+    return relativePositionOfVectorAndCamera.z>zStart 
+    && relativePositionOfVectorAndCamera.z<zEnd 
+    && (abs(relativePositionOfVectorAndCamera.x/relativePositionOfVectorAndCamera.z)<angleTangent 
+    &&  abs(relativePositionOfVectorAndCamera.y/relativePositionOfVectorAndCamera.z)<angleTangent);
 };
+
+const Vector3d& Camera::getPosition(){
+    return this->position;
+}
+
+void Camera::moveTo(const Vector3d& v){
+    this->position = v;
+}
+void Camera::addToPosition(const Vector3d& v){
+    this->position.add(v.x, v.y, v.z);
+}
+

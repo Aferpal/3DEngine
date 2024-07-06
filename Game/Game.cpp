@@ -49,3 +49,29 @@ std::vector<Shape>* Game::getFigures() const{
 void Game::fillShapeVectorWithInScreenShapesNormalized(std::vector<Shape>& v){
     this->engine.getShapesNormalizedAndInCamera(this->figures, v);
 };
+
+void Game::update(int actionCode){
+    moveAll(actionCode);
+}
+void Game::moveAll(int direction){
+    Vector3d directionVector{0,0,0};
+    switch (direction)
+        {
+        case 0:
+            directionVector.add(0, 0, 0.05);
+            break;
+        case 1:
+            directionVector.add(0, 0, -0.05);
+            break;
+        case 2: 
+            directionVector.add(0.05, 0 ,0);
+            break;
+        case 3:
+            directionVector.add(-0.05, 0, 0);
+            break;
+        default:
+            break;
+        }
+    this->engine.moveCamera(directionVector);
+}
+

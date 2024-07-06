@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-Engine::Engine(float angle, float zStart, float zEnd):viewAngle{angle}, camera{angle, Vector3d{0,0,0}, zStart, zEnd}{
+Engine::Engine(float angle, float zStart, float zEnd):viewAngle{angle}, camera{angle, Vector3d{0,2,0}, zStart, zEnd}{
 //normalizer{{{1/tanf(angle*0.5f), 0, 0, 0}, {0, 1/tanf(angle*0.5f), 0, 0}, {0,0,zEnd/(zEnd-zStart),zStart*zEnd/(zEnd-zStart)}, {0,0,1,0}}};
     normalizer.m.emplace_back(std::vector<float>{1/tanf(angle*0.5f), 0, 0, 0});
     normalizer.m.emplace_back(std::vector<float>{0, 1/tanf(angle*0.5f), 0, 0});
@@ -11,6 +11,7 @@ Engine::Engine(float angle, float zStart, float zEnd):viewAngle{angle}, camera{a
 void Engine::normalizeShape(Shape& shape){
     for(Triangle& triangle:shape.faces){
         for(Vector3d& v: triangle.points){
+            v.add(-this->camera.getPosition().x, -this->camera.getPosition().y, -this->camera.getPosition().z);
             v*=normalizer;
             if(v.q!=0){
                 v.x/=v.q; v.y/=v.q;
@@ -32,3 +33,7 @@ void Engine::getShapesNormalizedAndInCamera(const std::vector<Shape>& shape_vect
         }
     }
 };
+
+void Engine::moveCamera(const Vector3d& v){
+    this->camera.addToPosition(v);
+}

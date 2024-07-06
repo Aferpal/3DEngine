@@ -11,4 +11,5 @@ class Engine{
         void normalizeShape(Shape&);
         float getViewAngle() const;
         void getShapesNormalizedAndInCamera(const std::vector<Shape>&, std::vector<Shape>&);
+        void moveCamera(const Vector3d& v);
 };

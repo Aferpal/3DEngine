@@ -11,6 +11,10 @@ void Vector3d::add(float a, float b, float c){
     x+=a; y+=b; z+=c;
 }
 
+void Vector3d::add(const Vector3d& v){
+    add(v.x, v.y, v.z);
+}
+
 Vector3d& Vector3d::operator*=(const Matrix& matrix){
     if (matrix.size() != 4 || matrix[0].size()!=4) {
         return *this;
@@ -25,6 +29,13 @@ Vector3d& Vector3d::operator=(const Vector3d &other){
     x= other.x; y=other.y; z=other.z; q=other.q;
     return *this;
 };
+
+Vector3d& Vector3d::operator*=(float scalar){
+    this->x*=scalar;
+    this->y*=scalar;
+    this->z*=scalar;
+    return *this;
+}
 
 bool Vector3d::validate(const std::vector<float>& vec){
     return vec.size()==3;

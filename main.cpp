@@ -5,11 +5,11 @@
 
 int main()
 {   
-    Game g;
+    Game g{1, 20, 70};
     g.readShapeFromFilePath("./data/cube.txt");
     g.readShapeFromFilePath("./data/triangle.txt");
     g.readShapeFromFilePath("./data/cube2.txt");
     g.readShapeFromFilePath("./data/triangle2.txt");
-    Interface i = {g, 1000, 1000};
+    Interface i = {g, 1920, 1080};
     return 0;
 }

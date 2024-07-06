@@ -10,7 +10,9 @@ class Vector3d{
         Vector3d(const Vector3d&);
         Vector3d(Vector3d &&);
         void add(float, float, float);
+        void add(const Vector3d&);
         bool validate(const std::vector<float>&);
         Vector3d& operator=(const Vector3d &);
         Vector3d& operator*=(const Matrix&);
+        Vector3d& operator*=(float);
 };
