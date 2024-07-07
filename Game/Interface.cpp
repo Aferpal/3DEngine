@@ -1,7 +1,6 @@
 #include "Interface.h"
 
-Interface::Interface(const Game& g, int size_x, int size_y): window{sf::VideoMode(size_x, size_y), "SFML works!"}{
-    this->game = g;
+Interface::Interface(const Game& g, int size_x, int size_y): game{g}, window{sf::VideoMode(size_x, size_y), "SFML works!"}{
     this->window.setFramerateLimit(60);
     startGame();
 }

@@ -1,10 +1,12 @@
 #include "Camera.h"
 
 Camera::Camera()
-    :viewAngle{90},position{0,0,0}, angleTangent{tan(viewAngle/2)}, zEnd{10}, zStart{1}{}
+    :viewAngle{90},position{0,0,0}, angleTangent{tanf(viewAngle/2)}, zEnd{10}, zStart{1}{}
 
 Camera::Camera(float viewAngle, const Vector3d& position, float zStart, float zEnd)
-    : viewAngle{viewAngle}, position{position}, angleTangent{tan(viewAngle/2)}, zEnd{zEnd}, zStart{zStart}{}
+    : viewAngle{viewAngle}, position{position}, angleTangent{tanf(viewAngle/2)}, zEnd{zEnd}, zStart{zStart}{
+        std::cout<<viewAngle<<" "<<angleTangent<<'\n';
+    }
 
 Camera::Camera(const Camera& other) 
     :viewAngle{other.viewAngle}, position{other.position}, angleTangent{other.angleTangent}, zEnd{other.zEnd}, zStart{other.zStart}{}
