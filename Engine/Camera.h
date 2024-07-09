@@ -3,6 +3,9 @@
 class Camera{
     private:
         Vector3d position;
+        Vector3d forwardDirection;
+        Vector3d rightAxisDirection;
+        Vector3d upDirection;
         float viewAngle;
         float angleTangent;
         float zEnd;
@@ -18,4 +21,10 @@ class Camera{
         const Vector3d& getPosition();
         void moveTo(const Vector3d& v);
         void addToPosition(const Vector3d& v);
+        void moveRight(float);
+        void moveLeft(float);
+        void moveForward(float);
+        void moveBackwards(float);
+        void moveUp(float);
+        void moveDown(float);
 };

@@ -40,3 +40,18 @@ Vector3d& Vector3d::operator*=(float scalar){
 bool Vector3d::validate(const std::vector<float>& vec){
     return vec.size()==3;
 }
+
+Vector3d Vector3d::operator*(float scalar){
+    return {x*scalar, y*scalar, z*scalar, q};
+}
+
+float Vector3d::dotProduct(const Vector3d& v){
+    return x*v.x+y*v.y+z*v.z;
+}
+
+Vector3d Vector3d::crossProduct(const Vector3d& v){
+    float resultX = y*v.z - z*v.y;
+    float resultY = z*v.x - x*v.z;
+    float resultZ = x*v.y - y*v.x;
+    return {resultX, resultY, resultZ};
+}

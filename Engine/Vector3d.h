@@ -15,4 +15,7 @@ class Vector3d{
         Vector3d& operator=(const Vector3d &);
         Vector3d& operator*=(const Matrix&);
         Vector3d& operator*=(float);
+        Vector3d operator*(float);
+        float dotProduct(const Vector3d&);
+        Vector3d crossProduct(const Vector3d&);
 };
