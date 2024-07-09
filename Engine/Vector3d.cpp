@@ -46,7 +46,7 @@ Vector3d Vector3d::operator*(float scalar){
 }
 
 float Vector3d::dotProduct(const Vector3d& v){
-    return x*v.x+y*v.y+z*v.z;
+    return (x*v.x) + (y*v.y) + (z*v.z);
 }
 
 Vector3d Vector3d::crossProduct(const Vector3d& v){
@@ -54,4 +54,24 @@ Vector3d Vector3d::crossProduct(const Vector3d& v){
     float resultY = z*v.x - x*v.z;
     float resultZ = x*v.y - y*v.x;
     return {resultX, resultY, resultZ};
+}
+
+void Vector3d::rotateY(float angle){
+    float cos = cosf(angle);
+    float sin = sinf(angle);
+    float nx, nz;
+    nx = x * cos - z * sin;
+    nz = x * sin + z * cos;
+    x = nx;
+    z = nz;
+}
+
+void Vector3d::rotateX(float angle){
+    float cos = cosf(angle);
+    float sin = sinf(angle);
+    float ny, nz;
+    ny = y * cos + z * sin;
+    nz =  - y * sin + z * cos;
+    y = ny;
+    z = nz;
 }

@@ -18,4 +18,7 @@ class Vector3d{
         Vector3d operator*(float);
         float dotProduct(const Vector3d&);
         Vector3d crossProduct(const Vector3d&);
+        void rotateZ(float);
+        void rotateY(float);
+        void rotateX(float);
 };

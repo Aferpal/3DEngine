@@ -7,6 +7,8 @@ class Camera{
         Vector3d rightAxisDirection;
         Vector3d upDirection;
         float viewAngle;
+        Matrix normalizer;
+        Matrix rotateTranslateMatrix;
         float angleTangent;
         float zEnd;
         float zStart;
@@ -27,4 +29,10 @@ class Camera{
         void moveBackwards(float);
         void moveUp(float);
         void moveDown(float);
+        void rotateY(float);
+        void rotateX(float);
+        void getShapesNormalizedAndInCamera(const std::vector<Shape>&, std::vector<Shape>&);
+        void getShapesFitToCameraPositionAndAngle(const std::vector<Shape>&, std::vector<Shape>&);
+        void normalizeShape(Shape&);
+        
 };
