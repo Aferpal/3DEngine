@@ -1,3 +1,5 @@
 /output/*.exe
 /objects/*.o
 .vscode
+*.dll
+SFML-2.6.0
