@@ -12,6 +12,22 @@ void Engine::getShapesNormalizedAndInCamera(const std::vector<Shape>& shape_vect
 };
 
 void Engine::moveCamera(const Vector3d& v){
-    this->camera.rotateY(0.01);
-    //this->camera.addToPosition(v);
+    this->camera.addToPosition(v);
+}
+
+void Engine::rotate(float angle){
+    this->camera.rotateY(angle);
+}
+
+void Engine::moveRight(float s){
+    camera.moveRight(s);
+}
+void Engine::moveLeft(float s){
+    camera.moveLeft(s);
+}
+void Engine::moveForward(float s){
+    camera.moveForward(s);
+}
+void Engine::moveBackwards(float s){
+    camera.moveBackwards(s);
 }

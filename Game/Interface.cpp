@@ -22,6 +22,12 @@ void Interface::startGame(){
                 opcode = 2;
             }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
                 opcode = 3;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
+                opcode = 4;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+                opcode = 5;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+                opcode = 6;
             }
         }
         updateGame(opcode);

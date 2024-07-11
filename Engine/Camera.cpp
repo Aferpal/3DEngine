@@ -9,7 +9,7 @@ Camera::Camera()
     }
 
 Camera::Camera(float viewAngle, const Vector3d& position, float zStart, float zEnd)
-    : viewAngle{viewAngle}, position{position}, angleTangent{tanf(viewAngle/2)},forwardDirection{0, 0, -1}, upDirection{0, 1, 0}, rightAxisDirection{-1, 0, 0}, zEnd{zEnd}, zStart{zStart}{
+    : viewAngle{viewAngle}, position{position}, angleTangent{tanf(viewAngle/2)},forwardDirection{0, 0, 1}, upDirection{0, 1, 0}, rightAxisDirection{1, 0, 0}, zEnd{zEnd}, zStart{zStart}{
         normalizer.m.emplace_back(std::vector<float>{1/tanf(viewAngle*0.5f), 0, 0, 0});
         normalizer.m.emplace_back(std::vector<float>{0, 1/tanf(viewAngle*0.5f), 0, 0});
         normalizer.m.emplace_back(std::vector<float>{0,0,zEnd/(zEnd-zStart),1});
@@ -42,7 +42,7 @@ bool Camera::isTriangleOnCamera(const Triangle& t){
 bool Camera::isVertexOnCamera(const Vector3d& v){
     return v.z>zStart 
     && v.z<zEnd 
-    && (abs(v.x/v.z)<angleTangent 
+    && (abs((v.x*1080)/(v.z*1920))<angleTangent 
     &&  abs(v.y/v.z)<angleTangent);
 };
 
@@ -125,9 +125,9 @@ void Camera::getShapesFitToCameraPositionAndAngle(const std::vector<Shape>& shap
                 x = v.dotProduct(rightAxisDirection) - transDotA;
                 y = -v.dotProduct(upDirection) + transDotB;
                 z = v.dotProduct(forwardDirection) - transDotC;
-                v.x =x;
-                v.y =y;
-                v.z=z;
+                v.x = x;
+                v.y = y;
+                v.z = z;
             }
         }
     }

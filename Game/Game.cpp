@@ -51,27 +51,33 @@ void Game::fillShapeVectorWithInScreenShapesNormalized(std::vector<Shape>& v){
 };
 
 void Game::update(int actionCode){
-    moveAll(actionCode);
+    if(actionCode == 6){return;}
+    if(actionCode>=0 && actionCode <=3){
+        moveAll(actionCode);
+    }else if(actionCode == 4){
+        this->engine.rotate(-0.01);
+    }else if(actionCode == 5){
+        this->engine.rotate(0.01);
+    }
 }
 void Game::moveAll(int direction){
     Vector3d directionVector{0,0,0};
     switch (direction)
         {
         case 0:
-            directionVector.add(0, 0, 0.05);
+            engine.moveForward(0.05);
             break;
         case 1:
-            directionVector.add(0, 0, -0.05);
+            engine.moveBackwards(0.05);
             break;
         case 2: 
-            directionVector.add(0.05, 0 ,0);
+            engine.moveRight(0.05);
             break;
         case 3:
-            directionVector.add(-0.05, 0, 0);
+            engine.moveLeft(0.05);
             break;
         default:
             break;
         }
-    this->engine.moveCamera(directionVector);
 }
 
