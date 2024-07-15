@@ -55,9 +55,13 @@ void Game::update(int actionCode){
     if(actionCode>=0 && actionCode <=3){
         moveAll(actionCode);
     }else if(actionCode == 4){
-        this->engine.rotate(-0.01);
+        this->engine.rotateY(-0.01);
     }else if(actionCode == 5){
-        this->engine.rotate(0.01);
+        this->engine.rotateY(0.01);
+    }else if(actionCode == 7){
+        this->engine.rotateX(-0.01);
+    }else if(actionCode == 8){
+        this->engine.rotateX(0.01);
     }
 }
 void Game::moveAll(int direction){

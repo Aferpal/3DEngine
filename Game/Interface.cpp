@@ -28,6 +28,10 @@ void Interface::startGame(){
                 opcode = 5;
             }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
                 opcode = 6;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+                opcode = 7;
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::F)){
+                opcode = 8;
             }
         }
         updateGame(opcode);

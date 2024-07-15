@@ -8,7 +8,8 @@ class Engine{
         Engine(float, float, float);
         void getShapesNormalizedAndInCamera(const std::vector<Shape>&, std::vector<Shape>&);
         void moveCamera(const Vector3d& v);
-        void rotate(float);
+        void rotateY(float);
+        void rotateX(float);
         void moveRight(float);
         void moveLeft(float);
         void moveForward(float);

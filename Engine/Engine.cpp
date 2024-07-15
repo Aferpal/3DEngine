@@ -15,8 +15,12 @@ void Engine::moveCamera(const Vector3d& v){
     this->camera.addToPosition(v);
 }
 
-void Engine::rotate(float angle){
+void Engine::rotateY(float angle){
     this->camera.rotateY(angle);
+}
+
+void Engine::rotateX(float angle){
+    this->camera.rotateX(angle);
 }
 
 void Engine::moveRight(float s){
