@@ -85,11 +85,24 @@ void Camera::moveDown(float scalar){
 void Camera::rotateY(float angle){
     forwardDirection.rotateY(angle);
     rightAxisDirection.rotateY(angle);
+    upDirection.rotateY(angle);
 }
 
 void Camera::rotateX(float angle){
+    float YAngle = calcAngle();
+    rotateY(-YAngle);
     forwardDirection.rotateX(angle);
     upDirection.rotateX(angle);
+    rightAxisDirection.rotateX(angle);
+    rotateY(YAngle);
+}
+
+float Camera::calcAngle(){
+    float valueToAdd = 0.0;
+    if(rightAxisDirection.x < 0){
+        valueToAdd = 3.141592;
+    }
+    return (atanf(rightAxisDirection.z/rightAxisDirection.x)+valueToAdd);
 }
 
 void Camera::normalizeShape(Shape& shape){

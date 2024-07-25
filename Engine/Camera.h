@@ -34,5 +34,6 @@ class Camera{
         void getShapesNormalizedAndInCamera(const std::vector<Shape>&, std::vector<Shape>&);
         void getShapesFitToCameraPositionAndAngle(const std::vector<Shape>&, std::vector<Shape>&);
         void normalizeShape(Shape&);
+        float calcAngle();
         
 };
