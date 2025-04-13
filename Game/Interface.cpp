@@ -14,19 +14,19 @@ void Interface::startGame(){
                 window.close();
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                 window.close();
-            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
                 opcode = 0;
-            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
                 opcode = 1;
-            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
                 opcode = 2;
-            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
                 opcode = 3;
             }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
                 opcode = 4;
             }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
                 opcode = 5;
-            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+            }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
                 opcode = 6;
             }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
                 opcode = 7;
