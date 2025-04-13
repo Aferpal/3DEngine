@@ -1,6 +1,9 @@
-all: compile link 
 
 TARGET = app
+
+SFML_LIB = C:\projects\sfml\SFML-2.6.0\lib
+
+SFML_INCLUDE = C:\projects\sfml\SFML-2.6.0\include
 
 CXX = g++
 
@@ -20,9 +23,9 @@ OBJS = Game.o Interface.o Shape.o Triangle.o Vector3d.o Matrix.o Engine.o main.o
 
 OBJS_WITH_FOLDER = $(OBJS_FOLDER)/Camera.o $(OBJS_FOLDER)/Game.o $(OBJS_FOLDER)/Interface.o $(OBJS_FOLDER)/Shape.o $(OBJS_FOLDER)/Triangle.o $(OBJS_FOLDER)/Vector3d.o $(OBJS_FOLDER)/Matrix.o $(OBJS_FOLDER)/Engine.o $(OBJS_FOLDER)/main.o 
 
-LINK_DEPENDENCIES = -L"C:\projects\sfml\SFML-2.6.0\lib" -lsfml-graphics -lsfml-window -lsfml-system
+LINK_DEPENDENCIES = -L$(SFML_LIB) -lsfml-graphics -lsfml-window -lsfml-system
 
-COMPILE_DEPENDENCIES = -I"C:\projects\sfml\SFML-2.6.0\include"
+COMPILE_DEPENDENCIES = -I$(SFML_INCLUDE)
 
 
 
